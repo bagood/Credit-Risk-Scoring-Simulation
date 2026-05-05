@@ -2,4 +2,4 @@ joblib
 pandas
 numpy
 lightgbm
-sklearn
+scikit-learn
