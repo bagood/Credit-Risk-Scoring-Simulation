@@ -48,6 +48,12 @@ inference_data = pd.DataFrame({
 inference_data.replace('No', 0, inplace=True)
 inference_data.replace('Yes', 1, inplace=True)
 
+inference_data['grade_G'] = inference_data['grade_G'].astype(int)
+inference_data['home_ownership_MORTGAGE'] = inference_data['home_ownership_MORTGAGE'].astype(int)
+inference_data['home_ownership_RENT'] = inference_data['home_ownership_RENT'].astype(int)
+inference_data['purpose_small_business'] = inference_data['purpose_small_business'].astype(int)
+inference_data['term_36_months'] = inference_data['term_36_months'].astype(int)
+
 class_1_index = np.where(model.classes_ == 1)[0][0]
 score = model.predict_proba(inference_data)[:, class_1_index][0]
 
