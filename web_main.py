@@ -1,4 +1,4 @@
-import cloudpickle
+import joblib
 import numpy as np
 import pandas as pd
 import streamlit as st
@@ -8,10 +8,12 @@ st.sidebar.title("Credit Risk Scoring Model Simulation")
 
 st.sidebar.info("The __Credit Risk Scoring__ Model Used is __LightGBM__, optimized using Hyperparameter Tuning and Recursive Feature Extraction CV")
 
-model_path = Path('model')
+@st.cache_resource
+def load_model():
+    model = joblib.load('lgb_model.pkl')
+    return model
 
-with open((model_path / 'lgb_model').with_suffix('.pkl'), 'rb') as f:
-    model = cloudpickle.load(f)
+model = load_model()
 
 st.header("Please Insert The Following Value")
 st.markdown("---")
